@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using BingGrabber.Shared;
 
 namespace BingGrabberCLI
 {
@@ -7,7 +8,13 @@ namespace BingGrabberCLI
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting Image collection");
+
+            var imageCollector = new ImageCollector(args);
+            await imageCollector.SaveImages();
+
+            Console.WriteLine("Images collected");
+            Console.ReadLine();
         }
     }
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using BingGrabber.Shared;
 using NUnit.Framework;
 using Shouldly;
 
@@ -30,6 +32,18 @@ namespace BingGrabberTests
             string[] args = {"one=one","two"};
             Should.Throw<ArgumentException>(() => new BingGrabber.Shared.ArgumentParser(args).Parse())
                 .Message.ShouldBe("two");
+        }
+
+        public class CollectorSourceTests
+        {
+            [Test]
+            public void Can_generate_datetime()
+            {
+                var args = new[] {"from=2019-01", "to=2020-01"};
+                
+                CollectorSource collectorSource = new CollectorSource(args);
+                collectorSource.DateTimes.ToList().Count.ShouldBe(13);
+            }
         }
     }
 }
