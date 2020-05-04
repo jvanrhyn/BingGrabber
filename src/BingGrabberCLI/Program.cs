@@ -11,13 +11,18 @@ namespace BingGrabberCLI
     {
         public static async Task Main(string[] args)
         {
+	        if (args.Length == 0)
+	        {
+		        args = new[] {"from=2020-01", "to=2020-05"};
+	        }
+
 	        var builder = new HostBuilder()
 		        .ConfigureServices((context, services) =>
 		        {
 			        services.AddLogging(configure => configure.AddConsole());
 			        services.AddTransient<BingLoader>();
 			        services.AddSingleton<IArgumentParser, ArgumentParser>(x =>
-				         new ArgumentParser(args));
+				         new ArgumentParser(x.GetRequiredService<ILogger<ArgumentParser>>(), args));
 			        services.AddScoped<IImageCollector, ImageCollector>();
 			        services.AddScoped<IImageUriCollector, ImageUriCollector>();
 			        services.AddScoped<ICollectorSource, CollectorSource>();

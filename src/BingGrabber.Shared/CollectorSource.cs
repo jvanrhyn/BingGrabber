@@ -20,7 +20,7 @@ namespace BingGrabber.Shared
 
 		public IEnumerable<DateTime> DateTimes { get; private set; }
 
-		public IEnumerable<string> Urls { get; private set; }
+		public List<string> Urls { get; private set; }
 
 		public void Build()
 		{
@@ -34,7 +34,8 @@ namespace BingGrabber.Shared
 			var range = Range.FromDateTime(arguments["from"],arguments["to"], "yyyy-MM");
 			DateTimes = range.Interpolate(d => d.AddMonths(1));
 
-			Urls = DateTimes.Select(x => $"https://bingwallpaper.anerg.com/us/{x.Year:D4}{x.Month:D2}");
+			Urls = DateTimes.Select(x => $"https://bingwallpaper.anerg.com/us/{x.Year:D4}{x.Month:D2}").ToList();
+			_logger.LogInformation("Found {count} image Uri's", Urls.Count);
 		}
 	}
 }

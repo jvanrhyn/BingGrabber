@@ -2,17 +2,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System;
+using Microsoft.Extensions.Logging;
 
 [assembly:InternalsVisibleTo("BingGrabberTests")]
 namespace BingGrabber.Shared
 {
 	public class ArgumentParser : IArgumentParser
 	{
-        private readonly string[] _args;
+		private readonly ILogger<ArgumentParser> _logger;
+		private readonly string[] _args;
 
-        public ArgumentParser(string[] args)
+        public ArgumentParser(ILogger<ArgumentParser> logger, string[] args)
         {
-            _args = args;
+	        _logger = logger;
+	        _args = args;
         }
 
         public Dictionary<string, string> Parse()
@@ -23,8 +26,10 @@ namespace BingGrabber.Shared
                 var kv = item.Split('=');
                 if (kv.Length != 2)
                 {
+	                _logger.LogError("Argument invalid {argument}", kv[0]);
                     throw new ArgumentException(kv[0]);
                 }
+                _logger.LogInformation("Adding argument {key}, {value}", kv[0], kv[1]);
                 result.Add(kv[0], kv[1]);
             }
 

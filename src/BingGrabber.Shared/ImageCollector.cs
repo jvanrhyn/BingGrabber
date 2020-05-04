@@ -34,8 +34,13 @@ namespace BingGrabber.Shared
 
 				if (!File.Exists(filename))
 				{
+					_logger.LogInformation("Downloading image: {imageUrl}", url);
 					var b = url.GetBytesAsync().GetAwaiter().GetResult();
 					File.WriteAllBytes(filename, b);
+				}
+				else
+				{
+					_logger.LogWarning("Skipping existing image: {fileName}", filename);
 				}
 			});
 		}

@@ -18,7 +18,7 @@ namespace BingGrabberTests
         {
             string[] args = {"one=one","two=two"};
 
-            var argumentParser = new BingGrabber.Shared.ArgumentParser(args);
+            var argumentParser = new BingGrabber.Shared.ArgumentParser(null, args);
             var result = argumentParser.Parse();
 
             result.Count.ShouldBe(2);
@@ -30,7 +30,7 @@ namespace BingGrabberTests
         public void Invalid_arguments_throws_exception()
         {
             string[] args = {"one=one","two"};
-            Should.Throw<ArgumentException>(() => new BingGrabber.Shared.ArgumentParser(args).Parse())
+            Should.Throw<ArgumentException>(() => new BingGrabber.Shared.ArgumentParser(null, args).Parse())
                 .Message.ShouldBe("two");
         }
 

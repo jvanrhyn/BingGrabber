@@ -6,7 +6,7 @@ namespace BingGrabber.Shared
 	public interface ICollectorSource
 	{
 		IEnumerable<DateTime> DateTimes { get; }
-		IEnumerable<string> Urls { get; }
+		List<string> Urls { get; }
 		void Build();
 	}
 }
