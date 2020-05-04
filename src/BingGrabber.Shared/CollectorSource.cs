@@ -2,16 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BingGrabber.Shared.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace BingGrabber.Shared
 {
-	public class CollectorSource
+	public class CollectorSource : ICollectorSource
 	{
-		private readonly ArgumentParser _argumentParser;
+		private readonly ILogger<CollectorSource> _logger;
+		private readonly IArgumentParser _argumentParser;
 
-		public CollectorSource(string[] args)
+		public CollectorSource(ILogger<CollectorSource> logger, IArgumentParser argumentParser)
 		{
-			_argumentParser = new ArgumentParser(args);
+			_logger = logger;
+			_argumentParser = argumentParser;
 			Build();
 		}
 
@@ -19,11 +22,12 @@ namespace BingGrabber.Shared
 
 		public IEnumerable<string> Urls { get; private set; }
 
-		private void Build()
+		public void Build()
 		{
 			var arguments = _argumentParser.Parse();
 			if (!arguments.ContainsKey("from") || !arguments.ContainsKey("to"))
 			{
+				_logger.LogError("Passed in parameters are invalid");
 				throw new MissingArgumentException();
 			}
 

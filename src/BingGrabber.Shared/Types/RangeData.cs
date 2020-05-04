@@ -1,8 +1,9 @@
 namespace BingGrabber.Shared.Types
 {
-	public readonly struct Range<T>
+	// https://codereview.stackexchange.com/a/196913
+	public readonly struct RangeData<T>
 	{
-		public Range(T min, T max)
+		public RangeData(T min, T max)
 		{
 			Min = min;
 			Max = max;

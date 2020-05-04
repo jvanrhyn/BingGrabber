@@ -6,8 +6,8 @@ using System;
 [assembly:InternalsVisibleTo("BingGrabberTests")]
 namespace BingGrabber.Shared
 {
-    internal class ArgumentParser
-    {
+	public class ArgumentParser : IArgumentParser
+	{
         private readonly string[] _args;
 
         public ArgumentParser(string[] args)
@@ -15,7 +15,7 @@ namespace BingGrabber.Shared
             _args = args;
         }
 
-        internal Dictionary<string, string> Parse()
+        public Dictionary<string, string> Parse()
         {
             var result = new Dictionary<string, string>();
             foreach (var item in _args)

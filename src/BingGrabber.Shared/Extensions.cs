@@ -6,10 +6,11 @@ namespace BingGrabber.Shared
 {
 	public static class Extensions
 	{
-		public static IEnumerable<T> Interpolate<T>(this Range<T> range, Func<T, T> next) where T : IComparable
+		// https://codereview.stackexchange.com/a/196913
+		public static IEnumerable<T> Interpolate<T>(this RangeData<T> rangeData, Func<T, T> next) where T : IComparable
 		{
-			var current = range.Min;
-			while (current.CompareTo(range.Max) <= 0)
+			var current = rangeData.Min;
+			while (current.CompareTo(rangeData.Max) <= 0)
 			{
 				yield return (current = next(current));
 			}

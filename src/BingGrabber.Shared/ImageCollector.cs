@@ -2,15 +2,18 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Flurl.Http;
+using Microsoft.Extensions.Logging;
 
 namespace BingGrabber.Shared
 {
-	public class ImageCollector
+	public class ImageCollector : IImageCollector
 	{
-		private readonly ImageUriCollector _imageUriCollector;
-		public ImageCollector(string[] args)
+		private readonly ILogger<ImageCollector> _logger;
+		private readonly IImageUriCollector _imageUriCollector;
+		public ImageCollector(ILogger<ImageCollector> logger, IImageUriCollector imageUriCollector)
 		{
-			_imageUriCollector = new ImageUriCollector(args);
+			_logger = logger;
+			_imageUriCollector = imageUriCollector;
 		}
 
 		public async Task SaveImages()

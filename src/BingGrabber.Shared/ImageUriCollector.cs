@@ -3,15 +3,18 @@ using System.Linq;
 using Flurl.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Microsoft.Extensions.Logging;
 
 namespace BingGrabber.Shared
 {
-	public class ImageUriCollector
+	public class ImageUriCollector : IImageUriCollector
 	{
-		private readonly CollectorSource _collectorSource;
-		public ImageUriCollector(string[] args)
+		private readonly ILogger<ImageUriCollector> _logger;
+		private readonly ICollectorSource _collectorSource;
+		public ImageUriCollector(ILogger<ImageUriCollector> logger, ICollectorSource collectorSource)
 		{
-			_collectorSource = new CollectorSource(args);
+			_logger = logger;
+			_collectorSource = collectorSource;
 		}
 
 		public List<string> ImageUrls { get; } = new List<string>();
