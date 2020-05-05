@@ -1,3 +1,3 @@
 # BingGrabber
 
-Download images between to dates to a specified folder.
+Download images between two dates to a specified folder.
