@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BingGrabber.Shared;
+using BingGrabber.Shared.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace BingGrabberCLI
 {
-    class Program
+	public static class Program
     {
         public static async Task Main(string[] args)
         {
@@ -23,7 +24,7 @@ namespace BingGrabberCLI
 		        .ConfigureServices((context, services) =>
 		        {
 			        services.AddLogging(configure => configure.AddConsole());
-			        services.AddTransient<BingLoader>();
+			        services.AddTransient<Startup>();
 			        services.AddSingleton<IArgumentParser, ArgumentParser>(x =>
 				         new ArgumentParser(x.GetRequiredService<ILogger<ArgumentParser>>(), args));
 			        services.AddScoped<IImageCollector, ImageCollector>();
@@ -31,6 +32,11 @@ namespace BingGrabberCLI
 			        services.AddScoped<ICollectorSource, CollectorSource>();
 		        });
 
+	        await Run(builder);
+        }
+
+        private static async Task Run(IHostBuilder builder)
+        {
 	        var host = builder.Build();
 
 	        using var serviceScope = host.Services.CreateScope();
@@ -39,10 +45,10 @@ namespace BingGrabberCLI
 
 		        try
 		        {
-			        var myService = services.GetRequiredService<BingLoader>();
+			        var myService = services.GetRequiredService<Startup>();
 			        await myService.Run();
 
-			        Console.WriteLine("Success");
+			        Console.WriteLine("Completed");
 		        }
 		        catch (Exception ex)
 		        {

@@ -1,17 +1,18 @@
 using System.Threading.Tasks;
 using BingGrabber.Shared;
+using BingGrabber.Shared.Interfaces;
 
 namespace BingGrabberCLI
 {
-	public class BingLoader
+	public class Startup
 	{
 		private readonly IImageCollector _imageCollector;
 
-		public BingLoader(IImageCollector imageCollector)
+		public Startup(IImageCollector imageCollector)
 		{
 			_imageCollector = imageCollector;
 		}
 
-		public async Task Run() => await _imageCollector.SaveImages();
+		public async Task Run() => await _imageCollector.Run();
 	}
 }

@@ -5,7 +5,7 @@ using BingGrabber.Shared.Types;
 namespace BingGrabber.Shared
 {
 	// https://codereview.stackexchange.com/a/196913
-	static class Range
+	internal static class Range
 	{
 		public static RangeData<DateTime> FromDateTime(string min, string max, string format) =>
 			new RangeData<DateTime>(

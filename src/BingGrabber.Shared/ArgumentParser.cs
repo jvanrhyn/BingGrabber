@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System;
+using BingGrabber.Shared.Interfaces;
 using Microsoft.Extensions.Logging;
 
 [assembly:InternalsVisibleTo("BingGrabberTests")]

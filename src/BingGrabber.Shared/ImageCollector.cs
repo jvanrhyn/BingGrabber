@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using BingGrabber.Shared.Interfaces;
 using Flurl.Http;
 using Microsoft.Extensions.Logging;
 
@@ -20,7 +21,7 @@ namespace BingGrabber.Shared
 			_argumentParser = argumentParser;
 		}
 
-		public async Task SaveImages()
+		public async Task Run()
 		{
 			if (!_argumentParser.ParsedValues.ContainsKey(pathKey))
 			{

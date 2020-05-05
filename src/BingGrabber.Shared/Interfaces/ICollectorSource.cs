@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BingGrabber.Shared
+namespace BingGrabber.Shared.Interfaces
 {
 	public interface ICollectorSource
 	{

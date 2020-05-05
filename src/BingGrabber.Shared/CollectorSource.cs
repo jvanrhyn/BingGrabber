@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BingGrabber.Shared.Exceptions;
+using BingGrabber.Shared.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace BingGrabber.Shared

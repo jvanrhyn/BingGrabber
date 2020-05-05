@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Flurl.Http;
 using System.Threading.Tasks;
+using BingGrabber.Shared.Interfaces;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 

@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 
-namespace BingGrabber.Shared
+namespace BingGrabber.Shared.Interfaces
 {
 	public interface IImageCollector
 	{
-		Task SaveImages();
+		Task Run();
 	}
 }
