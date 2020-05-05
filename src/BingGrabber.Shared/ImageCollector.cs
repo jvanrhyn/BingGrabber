@@ -50,7 +50,7 @@ namespace BingGrabber.Shared
 
 				if (!File.Exists(filename))
 				{
-					_logger.LogInformation("Downloading image: {imageUrl}", url);
+					_logger.LogInformation("Downloading image: {imageUrl}. Saving to {filename}", url, filename);
 					var b = url.GetBytesAsync().GetAwaiter().GetResult();
 					File.WriteAllBytes(filename, b);
 				}

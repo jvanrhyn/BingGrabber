@@ -14,9 +14,9 @@ namespace BingGrabberTests
             {
                 var args = new[] {"from=2019-01", "to=2020-01", "path=."};
 
-				var argumentParser = new ArgumentParser(TestLogger.Get<ArgumentParser>(), args);
+				var argumentParser = new ArgumentParser(TestLogger.For<ArgumentParser>(), args);
                 
-                CollectorSource collectorSource = new CollectorSource(TestLogger.Get<CollectorSource>(), argumentParser );
+                CollectorSource collectorSource = new CollectorSource(TestLogger.For<CollectorSource>(), argumentParser );
                 //collectorSource.DateTimes.ToList().Count.ShouldBe(13);
             }
         }
