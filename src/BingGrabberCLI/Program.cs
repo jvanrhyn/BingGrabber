@@ -13,7 +13,10 @@ namespace BingGrabberCLI
         {
 	        if (args.Length == 0)
 	        {
-		        args = new[] {"from=2020-01", "to=2020-05"};
+				Console.WriteLine(
+					@"Usage:
+	BingGrabberCLI.exe from=2019-05 to=2020-01 path=c:\temp\");
+				return;
 	        }
 
 	        var builder = new HostBuilder()

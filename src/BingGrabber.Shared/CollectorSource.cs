@@ -24,7 +24,7 @@ namespace BingGrabber.Shared
 
 		public void Build()
 		{
-			var arguments = _argumentParser.Parse();
+			var arguments = _argumentParser.ParsedValues;
 			if (!arguments.ContainsKey("from") || !arguments.ContainsKey("to"))
 			{
 				_logger.LogError("Passed in parameters are invalid");

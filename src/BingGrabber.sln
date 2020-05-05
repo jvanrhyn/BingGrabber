@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30028.174
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingGrabberCLI", "BingGrabberCLI\BingGrabberCLI.csproj", "{CCCBC3C5-C96F-4ABB-9C7D-D27931A1BECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BingGrabberCLI", "BingGrabberCLI\BingGrabberCLI.csproj", "{CCCBC3C5-C96F-4ABB-9C7D-D27931A1BECA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingGrabberTests", "..\tests\BingGrabberTests\BingGrabberTests.csproj", "{D3BB0BCA-1408-431B-B29E-929C89473A1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BingGrabberTests", "..\tests\BingGrabberTests\BingGrabberTests.csproj", "{D3BB0BCA-1408-431B-B29E-929C89473A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingGrabber.Shared", "BingGrabber.Shared\BingGrabber.Shared.csproj", "{7340EF45-4C21-480F-9E28-AC2012566BB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BingGrabber.Shared", "BingGrabber.Shared\BingGrabber.Shared.csproj", "{7340EF45-4C21-480F-9E28-AC2012566BB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BEB7493-B30F-45C3-A9D8-193D014AB5FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CCCBC3C5-C96F-4ABB-9C7D-D27931A1BECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +57,11 @@ Global
 		{7340EF45-4C21-480F-9E28-AC2012566BB2}.Release|x64.Build.0 = Release|Any CPU
 		{7340EF45-4C21-480F-9E28-AC2012566BB2}.Release|x86.ActiveCfg = Release|Any CPU
 		{7340EF45-4C21-480F-9E28-AC2012566BB2}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B44DC1D5-1D97-4A8C-9D28-4F75EFBD2DDD}
 	EndGlobalSection
 EndGlobal

@@ -4,6 +4,6 @@ namespace BingGrabber.Shared
 {
 	public interface IArgumentParser
 	{
-		Dictionary<string, string> Parse();
+		Dictionary<string, string> ParsedValues { get;  }
 	}
 }

@@ -16,9 +16,12 @@ namespace BingGrabber.Shared
         {
 	        _logger = logger;
 	        _args = args;
+			Parse();
         }
 
-        public Dictionary<string, string> Parse()
+		public Dictionary<string, string> ParsedValues { get; private set; }
+
+		private void Parse()
         {
             var result = new Dictionary<string, string>();
             foreach (var item in _args)
@@ -33,7 +36,7 @@ namespace BingGrabber.Shared
                 result.Add(kv[0], kv[1]);
             }
 
-            return result;
+            ParsedValues = result;
         }
     }
 }

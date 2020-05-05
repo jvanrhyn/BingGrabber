@@ -1,14 +1,16 @@
 using System;
 using System.Linq;
 using BingGrabber.Shared;
+using Microsoft.Extensions.Logging.Abstractions;
+using Moq;
 using NUnit.Framework;
 using Shouldly;
 
 namespace BingGrabberTests
 {
-    public class Tests
+	public partial class Tests
     {
-        [SetUp]
+		[SetUp]
         public void Setup()
         {
         }
@@ -16,34 +18,28 @@ namespace BingGrabberTests
         [Test]
         public void Can_create_dictionary()
         {
-            string[] args = {"one=one","two=two"};
+			string[] args = {"one=one","two=two", "path=path"};
 
-            var argumentParser = new BingGrabber.Shared.ArgumentParser(null, args);
-            var result = argumentParser.Parse();
+            var argumentParser = new ArgumentParser(TestLogger.Get<ArgumentParser>(), args);
+            var result = argumentParser.ParsedValues;
 
-            result.Count.ShouldBe(2);
+            result.Count.ShouldBe(3);
             result["one"].ShouldBe("one");
             result["two"].ShouldBe("two");
-        }
+			result["path"].ShouldBe("path");
+		}
         
         [Test]
         public void Invalid_arguments_throws_exception()
         {
             string[] args = {"one=one","two"};
-            Should.Throw<ArgumentException>(() => new BingGrabber.Shared.ArgumentParser(null, args).Parse())
+            Should.Throw<ArgumentException>(() => new BingGrabber.Shared.ArgumentParser(TestLogger.Get<ArgumentParser>(), args))
                 .Message.ShouldBe("two");
         }
 
-        public class CollectorSourceTests
-        {
-            [Test]
-            public void Can_generate_datetime()
-            {
-                var args = new[] {"from=2019-01", "to=2020-01"};
-                
-                //CollectorSource collectorSource = new CollectorSource();
-                //collectorSource.DateTimes.ToList().Count.ShouldBe(13);
-            }
-        }
+		public static class TestLogger
+		{
+			public static NullLogger<T> Get<T>() => new NullLogger<T>();
+		}
     }
 }
