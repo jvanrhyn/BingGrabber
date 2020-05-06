@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using BingGrabber.Shared;
 using BingGrabber.Shared.Interfaces;
 
 namespace BingGrabberCLI

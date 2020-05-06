@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using BingGrabber.Shared.Interfaces;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 
 [assembly:InternalsVisibleTo("BingGrabberTests")]
 namespace BingGrabber.Shared
@@ -22,7 +21,7 @@ namespace BingGrabber.Shared
 			Parse();
         }
 
-		public Dictionary<string, string> ParsedValues { get; private set; } = new Dictionary<string, string>();
+		public Dictionary<string, string> ParsedValues { get; } = new Dictionary<string, string>();
 
 		private void Parse()
         {
