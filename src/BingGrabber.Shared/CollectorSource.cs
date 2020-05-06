@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,13 @@ namespace BingGrabber.Shared
 			Build();
 		}
 
-		public IEnumerable<DateTime> DateTimes { get; private set; }
+		public IEnumerable<DateTime> DateTimes { get; private set; } = Enumerable.Empty<DateTime>();
 
-		public List<string> Urls { get; private set; }
+		public List<string> Urls { get; private set; } = new List<string>();
 
 		public void Build()
 		{
+			_logger.LogInformation("Collecting sources.");
 			var arguments = _argumentParser.ParsedValues;
 			if (!arguments.ContainsKey("from") || !arguments.ContainsKey("to"))
 			{
@@ -36,7 +38,7 @@ namespace BingGrabber.Shared
 			DateTimes = range.Interpolate(d => d.AddMonths(1));
 
 			Urls = DateTimes.Select(x => $"https://bingwallpaper.anerg.com/us/{x.Year:D4}{x.Month:D2}").ToList();
-			_logger.LogInformation("Found {count} image Uri's", Urls.Count);
+			_logger.LogInformation("Found {count} pages with images", Urls.Count);
 		}
 	}
 }

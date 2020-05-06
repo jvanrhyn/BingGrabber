@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ namespace BingGrabber.Shared
 		private readonly ILogger<ImageCollector> _logger;
 		private readonly IImageUriCollector _imageUriCollector;
 		private readonly IArgumentParser _argumentParser;
-		private string pathKey = "path";
 
 		public ImageCollector(ILogger<ImageCollector> logger, IImageUriCollector imageUriCollector, IArgumentParser argumentParser)
 		{
@@ -23,16 +23,16 @@ namespace BingGrabber.Shared
 
 		public async Task Run()
 		{
-			if (!_argumentParser.ParsedValues.ContainsKey(pathKey))
+			if (!_argumentParser.ParsedValues.ContainsKey(Constants.PathKey))
 			{
 				_logger.LogError("Path not specified");
-				throw new ArgumentException(pathKey);
+				throw new ArgumentException(Constants.PathKey);
 			}
 
-			if (!Directory.Exists(_argumentParser.ParsedValues[pathKey]))
+			if (!Directory.Exists(_argumentParser.ParsedValues[Constants.PathKey]))
 			{
-				_logger.LogInformation("Creating folder : {folder}", _argumentParser.ParsedValues[pathKey]);
-				Directory.CreateDirectory(_argumentParser.ParsedValues[pathKey]);
+				_logger.LogInformation("Creating folder : {folder}", _argumentParser.ParsedValues[Constants.PathKey]);
+				Directory.CreateDirectory(_argumentParser.ParsedValues[Constants.PathKey]);
 			}
 
 			await _imageUriCollector.Collect();

@@ -1,8 +1,11 @@
+#nullable enable
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System;
+using System.Linq;
 using BingGrabber.Shared.Interfaces;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 [assembly:InternalsVisibleTo("BingGrabberTests")]
 namespace BingGrabber.Shared
@@ -19,11 +22,10 @@ namespace BingGrabber.Shared
 			Parse();
         }
 
-		public Dictionary<string, string> ParsedValues { get; private set; }
+		public Dictionary<string, string> ParsedValues { get; private set; } = new Dictionary<string, string>();
 
 		private void Parse()
         {
-            var result = new Dictionary<string, string>();
             foreach (var item in _args)
             {
                 var kv = item.Split('=');
@@ -33,10 +35,20 @@ namespace BingGrabber.Shared
                     throw new ArgumentException(kv[0]);
                 }
                 _logger.LogInformation("Adding argument {key}, {value}", kv[0], kv[1]);
-                result.Add(kv[0], kv[1]);
+                ParsedValues.Add(kv[0], kv[1]);
             }
-
-            ParsedValues = result;
+            Validate();
         }
+
+		private void Validate()
+		{
+			var mustHave = new[] {Constants.ToKey, Constants.FormKey, Constants.PathKey};
+			if (ParsedValues.Keys.Intersect(mustHave).Count() != mustHave.Length)
+			{
+				var validationError =  new ArgumentException("Missing required parameter. from= to= and path= are required");
+				_logger.LogError(validationError,"Validation Error");
+				throw validationError;
+			}
+		}
     }
 }

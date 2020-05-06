@@ -1,5 +1,7 @@
-﻿using BingGrabber.Shared;
+﻿using System.Linq;
+using BingGrabber.Shared;
 using NUnit.Framework;
+using Shouldly;
 
 namespace BingGrabberTests
 {
@@ -7,7 +9,7 @@ namespace BingGrabberTests
     {
 		public class CollectorSourceTests
         {
-			
+
 
 			[Test]
             public void Can_generate_datetime()
@@ -15,9 +17,9 @@ namespace BingGrabberTests
                 var args = new[] {"from=2019-01", "to=2020-01", "path=."};
 
 				var argumentParser = new ArgumentParser(TestLogger.For<ArgumentParser>(), args);
-                
-                CollectorSource collectorSource = new CollectorSource(TestLogger.For<CollectorSource>(), argumentParser );
-                //collectorSource.DateTimes.ToList().Count.ShouldBe(13);
+
+                var collectorSource = new CollectorSource(TestLogger.For<CollectorSource>(), argumentParser );
+                collectorSource.DateTimes.ToList().Count.ShouldBe(13);
             }
         }
     }

@@ -16,14 +16,14 @@ namespace BingGrabberTests
         [Test]
         public void Can_create_dictionary()
         {
-			string[] args = {"one=one","two=two", "path=path"};
+			string[] args = {"from=from","to=to", "path=path"};
 
             var argumentParser = new ArgumentParser(TestLogger.For<ArgumentParser>(), args);
             var result = argumentParser.ParsedValues;
 
             result.Count.ShouldBe(3);
-            result["one"].ShouldBe("one");
-            result["two"].ShouldBe("two");
+            result["from"].ShouldBe("from");
+            result["to"].ShouldBe("to");
 			result["path"].ShouldBe("path");
 		}
 
@@ -34,6 +34,7 @@ namespace BingGrabberTests
             Should.Throw<ArgumentException>(() => new BingGrabber.Shared.ArgumentParser(TestLogger.For<ArgumentParser>(), args))
                 .Message.ShouldBe("two");
         }
+
 
         private static class TestLogger
 		{
