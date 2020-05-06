@@ -5,13 +5,11 @@ using Shouldly;
 
 namespace BingGrabberTests
 {
-	public partial class Tests
+	public class CollectorSourceTests
     {
-		public class CollectorSourceTests
-        {
 
 
-			[Test]
+	    [Test]
             public void Can_generate_datetime()
             {
                 var args = new[] {"from=2019-01", "to=2020-01", "path=."};
@@ -23,4 +21,4 @@ namespace BingGrabberTests
             }
         }
     }
-}
+

@@ -37,7 +37,7 @@ namespace BingGrabber.Shared
 
 			await _imageUriCollector.Collect();
 
-			var parallelOptions = new ParallelOptions()
+			var parallelOptions = new ParallelOptions
 			{
 				MaxDegreeOfParallelism = Environment.ProcessorCount
 			};
